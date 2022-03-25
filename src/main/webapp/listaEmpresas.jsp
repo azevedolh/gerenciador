@@ -11,6 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<c:if test="${ not empty nomeEmpresa and not empty dataAbertura }">
+		<fmt:formatDate value="${ dataAbertura }" pattern="dd/MM/yyyy" var="dataFormatada"/>
+		<h1> Nova empresa ${ nomeEmpresa } - ${ dataFormatada } cadastrada! </h1>	
+	</c:if>
+	
 	<h1>Lista de Empresas: </h1>
 	<ul>
 		

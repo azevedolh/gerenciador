@@ -38,8 +38,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 		request.setAttribute("nomeEmpresa", empresa.getNome());
 		request.setAttribute("dataAbertura", empresa.getDataAbertura());
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("listaEmpresas");
 	}
 
 }
