@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/novaEmpresa")
-public class NovaEmpresaServlet extends HttpServlet {
+@WebServlet("/alteraEmpresa")
+public class AlterarEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Cadastrando nova empresa");
+		Integer id = Integer.valueOf(request.getParameter("id"));
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataAbertura = request.getParameter("dataAbertura");
-
 		
 		Date dataAbertura;
 		try {
@@ -30,9 +28,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 			throw new ServletException(e);
 		}
 		
-		Empresa empresa = new Empresa(nomeEmpresa, dataAbertura);
 		Banco banco = new Banco();
-		banco.adicionar(empresa);
+		Empresa empresa = banco.getEmpresaById(id);
+		empresa.setNome(nomeEmpresa);
+		empresa.setDataAbertura(dataAbertura);
 		
 		response.sendRedirect("listaEmpresas");
 	}
