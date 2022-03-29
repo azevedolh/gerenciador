@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Empresas</title>
 </head>
 <body>
 
@@ -22,7 +22,11 @@
 		
 		<c:forEach items="${ listaEmpresas }" var="empresa" >
 			<fmt:formatDate value="${ empresa.dataAbertura }" var="dataFormatada" pattern="dd/MM/yyyy" />
-			<li> ${ empresa.nome } - ${ dataFormatada } <a href="teste">Editar</a> <a href="removerEmpresa?id=${empresa.id}">Remover</a> </li>	
+			<li> 
+				${ empresa.nome } - ${ dataFormatada } 
+				<a href="editarEmpresa?id=${empresa.id}">Editar</a> 
+				<a href="removerEmpresa?id=${empresa.id}">Remover</a> 
+			</li>	
 		</c:forEach>
 	</ul>
 </body>
