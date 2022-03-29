@@ -28,12 +28,16 @@ public class Banco {
 		empresa.setId(Banco.chaveSequencial++);
 		Banco.listaEmpresas.add(empresa);
 	}
-
-	public void remover(Integer id) {
+	
+	public Empresa getEmpresaById(Integer id) {
 		List<Empresa> empresas = Banco.listaEmpresas.stream()
 				.filter(e -> e.getId().equals(id))
 				.limit(1)
 				.collect(Collectors.toList());
-		Banco.listaEmpresas.remove(empresas.get(0));
+		return empresas.get(0);
+	}
+
+	public void remover(Integer id) {
+		Banco.listaEmpresas.remove(this.getEmpresaById(id));
 	}
 }
