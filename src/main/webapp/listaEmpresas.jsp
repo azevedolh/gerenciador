@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="br.com.alura.gerenciador.servlet.Empresa, java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:url value="/welcome.jsp" var="home" />
 
 <!DOCTYPE html>
 <html>
@@ -11,6 +12,8 @@
 <title>Empresas</title>
 </head>
 <body>
+
+	<h4> [<a href="${ home }">Home</a>] </h4>
 
 	<c:if test="${ not empty nomeEmpresa and not empty dataAbertura }">
 		<fmt:formatDate value="${ dataAbertura }" pattern="dd/MM/yyyy" var="dataFormatada"/>
