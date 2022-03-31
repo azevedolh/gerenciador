@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="br.com.alura.gerenciador.servlet.Empresa, java.util.List" %>
+<%@ page import="br.com.alura.gerenciador.modelo.Empresa, java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<c:url value="/welcome.jsp" var="home" />
+<c:url value="/empresa" var="home" />
 
 <!DOCTYPE html>
 <html>
@@ -22,13 +22,12 @@
 	
 	<h1>Lista de Empresas: </h1>
 	<ul>
-		
 		<c:forEach items="${ listaEmpresas }" var="empresa" >
 			<fmt:formatDate value="${ empresa.dataAbertura }" var="dataFormatada" pattern="dd/MM/yyyy" />
 			<li> 
 				${ empresa.nome } - ${ dataFormatada } 
-				<a href="editarEmpresa?id=${empresa.id}">Editar</a> 
-				<a href="removerEmpresa?id=${empresa.id}">Remover</a> 
+				<a href="empresa?acao=/editarEmpresa&id=${empresa.id}">Editar</a> 
+				<a href="empresa?acao=/removerEmpresa&id=${empresa.id}">Remover</a> 
 			</li>	
 		</c:forEach>
 	</ul>
