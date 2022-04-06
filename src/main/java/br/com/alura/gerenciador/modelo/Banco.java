@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Banco {
 
 	static private List<Empresa> listaEmpresas = new ArrayList<Empresa>();
+	static private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
 	private static Integer chaveSequencial = 1;
 
@@ -18,10 +19,17 @@ public class Banco {
 		Banco.listaEmpresas.add(empresa1);
 		empresa2.setId(Banco.chaveSequencial++);
 		Banco.listaEmpresas.add(empresa2);
+		
+		Usuario usuario1 = new Usuario("teste", "123");
+		Banco.listaUsuarios.add(usuario1);
 	}
 
 	public List<Empresa> getEmpresas() {
 		return Banco.listaEmpresas;
+	}
+	
+	public List<Usuario> getUsuarios() {
+		return Banco.listaUsuarios;
 	}
 
 	public void adicionar(Empresa empresa) {
@@ -30,11 +38,11 @@ public class Banco {
 	}
 	
 	public Empresa getEmpresaById(Integer id) {
-		List<Empresa> empresas = Banco.listaEmpresas.stream()
+		Empresa empresa = Banco.listaEmpresas.stream()
 				.filter(e -> e.getId().equals(id))
-				.limit(1)
-				.collect(Collectors.toList());
-		return empresas.get(0);
+				.findAny()
+				.orElse(null);
+		return empresa;
 	}
 
 	public void remover(Integer id) {
