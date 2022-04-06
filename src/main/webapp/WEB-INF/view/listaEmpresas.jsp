@@ -22,12 +22,12 @@
 	
 	<h1>Lista de Empresas: </h1>
 	<ul>
-		<c:forEach items="${ listaEmpresas }" var="empresa" >
+		<c:forEach items="${ ListaEmpresas }" var="empresa" >
 			<fmt:formatDate value="${ empresa.dataAbertura }" var="dataFormatada" pattern="dd/MM/yyyy" />
 			<li> 
 				${ empresa.nome } - ${ dataFormatada } 
-				<a href="empresa?acao=/editarEmpresa&id=${empresa.id}">Editar</a> 
-				<a href="empresa?acao=/removerEmpresa&id=${empresa.id}">Remover</a> 
+				<a href="empresa?acao=EditarEmpresa&id=${empresa.id}">Editar</a> 
+				<a href="empresa?acao=RemoverEmpresa&id=${empresa.id}">Remover</a> 
 			</li>	
 		</c:forEach>
 	</ul>

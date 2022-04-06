@@ -12,7 +12,7 @@
 		<form action="${ urlEmpresa }" method="post">
 			Nome: <input type="text" name="nome"/>
 			Data Abertura: <input type="text" name="dataAbertura"/>
-			<input type="hidden" name="acao" value="/cadastrarEmpresa"/>
+			<input type="hidden" name="acao" value="CadastrarEmpresa"/>
 			<input type="submit"/>
 		</form>
 	</body>

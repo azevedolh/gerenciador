@@ -9,13 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.alura.gerenciador.service.AlterarEmpresaService;
-import br.com.alura.gerenciador.service.CadastrarEmpresaService;
-import br.com.alura.gerenciador.service.EditarEmpresaService;
-import br.com.alura.gerenciador.service.EmpresaHomeService;
-import br.com.alura.gerenciador.service.FormEmpresaService;
-import br.com.alura.gerenciador.service.ListaEmpresaService;
-import br.com.alura.gerenciador.service.RemoverEmpresaService;
+import br.com.alura.gerenciador.acao.Acao;
 
 @WebServlet("/empresa")
 public class EmpresaController extends HttpServlet {
@@ -24,30 +18,20 @@ public class EmpresaController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String acao = request.getParameter("acao");
 		
+		if (acao == null) {
+			acao = "EmpresaHome";
+		}
+		
 		String link = null;
 		
-		if (acao == null) {
-			EmpresaHomeService empresaHome = new EmpresaHomeService();
-			link = empresaHome.executa(request, response);
-		} else if (acao.equals("/listaEmpresas")) {
-			ListaEmpresaService listaEmpresa = new ListaEmpresaService();
-			link = listaEmpresa.executa(request, response);
-		} else if (acao.equals("/cadastrarEmpresa")) {
-			CadastrarEmpresaService cadastrarEmpresa = new CadastrarEmpresaService();
-			link = cadastrarEmpresa.executa(request, response);
-		} else if (acao.equals("/editarEmpresa")) {
-			EditarEmpresaService editarEmpresa = new EditarEmpresaService();
-			link = editarEmpresa.executa(request, response);
-		} else if (acao.equals("/alterarEmpresa")) {
-			AlterarEmpresaService alterarEmpresa = new AlterarEmpresaService();
-			link = alterarEmpresa.executa(request, response);
-		} else if (acao.equals("/removerEmpresa")) {
-			RemoverEmpresaService removerEmpresa = new RemoverEmpresaService();
-			link = removerEmpresa.executa(request, response);
-		} else if (acao.equals("/formEmpresa")) {
-			FormEmpresaService formEmpresa = new FormEmpresaService();
-			link = formEmpresa.executa(request, response);
-		} 
+		try {
+			Class classe = Class.forName("br.com.alura.gerenciador.acao." + acao);
+			Acao objeto = (Acao)classe.newInstance();
+			link = objeto.executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+			throw new ServletException(e);
+		}
 		
 		String[] acaoAndUrl = link.split(":");
 		
@@ -56,6 +40,6 @@ public class EmpresaController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect(acaoAndUrl[1]);
-		}
+		} 
 	}
 }
