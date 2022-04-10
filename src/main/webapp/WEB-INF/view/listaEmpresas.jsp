@@ -12,6 +12,7 @@
 <title>Empresas</title>
 </head>
 <body>
+	<c:import url="logoutParcial.jsp"></c:import>
 
 	<h4> [<a href="${ home }">Home</a>] </h4>
 

@@ -8,6 +8,7 @@
 		<title>Nova Empresa</title>
 	</head>
 	<body>
+		<c:import url="logoutParcial.jsp"></c:import>
 		<h4> [<a href="${ urlEmpresa }">Home</a>] </h4>
 		<form action="${ urlEmpresa }" method="post">
 			Nome: <input type="text" name="nome"/>

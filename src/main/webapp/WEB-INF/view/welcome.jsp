@@ -4,6 +4,7 @@
 <c:url value="/empresa?acao=ListaEmpresas" var="urlListaEmpresas"/>
 <c:url value="/empresa?acao=FormEmpresa" var="urlNovaEmpresa"/>
 <c:url value="/empresa?acao=FormLogin" var="urlLogin"/>
+<c:url value="/empresa?acao=Logout" var="urlLogout"/>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,14 @@
 		<h1>Welcome to a simple servlet implementation.</h1>
 		<h2>Select one of the options below:</h2> 
 		<ul>
-			<li><a href="${ urlLogin }">Login</a></li>
+			<c:if test="${ empty usuarioLogado }">
+				<li><a href="${ urlLogin }">Login</a></li>
+			</c:if>
+			
+			<c:if test="${ not empty usuarioLogado }">
+				<li><a href="${ urlLogout }">Logout</a></li>
+			</c:if>
+			
 			<li><a href="${ urlNovaEmpresa }">Cadastrar Nova Empresa</a></li>
 			<li><a href="${ urlListaEmpresas }">Listar empresas</a></li>
 		</ul> 
