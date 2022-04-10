@@ -44,6 +44,14 @@ public class Banco {
 				.orElse(null);
 		return empresa;
 	}
+	
+	public Usuario verificaExistenciaUsuario(String login, String senha) {
+		Usuario usuario = Banco.listaUsuarios.stream()
+				.filter(e -> e.ehIgual(login, senha))
+				.findAny()
+				.orElse(null);
+		return usuario;
+	}
 
 	public void remover(Integer id) {
 		Banco.listaEmpresas.remove(this.getEmpresaById(id));
