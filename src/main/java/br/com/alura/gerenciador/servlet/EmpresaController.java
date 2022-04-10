@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.acao.Acao;
 
@@ -20,6 +21,17 @@ public class EmpresaController extends HttpServlet {
 		
 		if (acao == null) {
 			acao = "EmpresaHome";
+		}
+		
+//      VERIFICA AUTORIZACOES DE ACESSO		
+		HttpSession sessao = request.getSession();
+		
+		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
+		boolean acaoProtegida = !(acao.equals("EmpresaHome") || acao.equals("FormLogin") || acao.equals("Login"));
+		
+		if (acaoProtegida && usuarioNaoEstaLogado) {
+			response.sendRedirect("empresa?acao=FormLogin");
+			return;
 		}
 		
 		String link = null;
