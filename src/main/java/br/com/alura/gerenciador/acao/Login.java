@@ -5,8 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.modelo.Banco;
+import br.com.alura.gerenciador.modelo.Usuario;
 
 public class Login implements Acao {
 
@@ -19,10 +21,12 @@ public class Login implements Acao {
 		System.out.println("Logando Usuário: " + login);
 
 		Banco banco = new Banco();
-		boolean isLoginValido = banco.getUsuarios().stream().anyMatch(e -> e.ehIgual(login, senha));
+		Usuario usuario = banco.verificaExistenciaUsuario(login, senha);
 		
-		if (isLoginValido) {
+		if (usuario != null) {
 			System.out.println("Sucesso no Login, usuário " + login);
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuarioLogado", usuario);
 			return "redirect:empresa?acao=ListaEmpresas";
 		}
 
