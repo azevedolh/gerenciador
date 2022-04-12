@@ -27,7 +27,12 @@ public class Login implements Acao {
 			System.out.println("Sucesso no Login, usuário " + login);
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("usuarioLogado", usuario);
-			return "redirect:empresa?acao=ListaEmpresas";
+			String urlAnterior = (String)sessao.getAttribute("urlAnterior");
+			if ( urlAnterior == null) {
+				return "redirect:empresa?acao=ListaEmpresas";
+			};
+			
+			return "redirect:empresa?acao=" + urlAnterior;
 		}
 
 		System.out.println("Falha no Login, usuário " + login + ". Usuário ou senha incorretos");

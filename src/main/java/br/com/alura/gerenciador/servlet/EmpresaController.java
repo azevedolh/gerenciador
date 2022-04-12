@@ -17,22 +17,7 @@ public class EmpresaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String acao = request.getParameter("acao");
-		
-		if (acao == null) {
-			acao = "EmpresaHome";
-		}
-		
-//      VERIFICA AUTORIZACOES DE ACESSO		
-		HttpSession sessao = request.getSession();
-		
-		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
-		boolean acaoProtegida = !(acao.equals("EmpresaHome") || acao.equals("FormLogin") || acao.equals("Login"));
-		
-		if (acaoProtegida && usuarioNaoEstaLogado) {
-			response.sendRedirect("empresa?acao=FormLogin");
-			return;
-		}
+		String acao = (String)request.getAttribute("acao"); 
 		
 		String link = null;
 		
