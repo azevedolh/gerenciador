@@ -10,6 +10,12 @@ import javax.servlet.ServletResponse;
 
 public class MonitoramentoFilter implements Filter{
 	@Override
+	public void destroy() {}
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		long tempoInicio = System.currentTimeMillis();
@@ -21,12 +27,5 @@ public class MonitoramentoFilter implements Filter{
 		System.out.println("Ação <" + acao + "> levou " + (tempoFim - tempoInicio) + " milisegundos para executar."); 
 		
 	}
-
-	@Override
-	public void destroy() {
-	}
-
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+	
 }
