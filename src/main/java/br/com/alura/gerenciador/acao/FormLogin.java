@@ -11,7 +11,7 @@ public class FormLogin implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		return "foward:formLogin.jsp";
+		return "foward:WEB-INF/view/formLogin.jsp";
 	}
 
 }

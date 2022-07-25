@@ -20,6 +20,6 @@ public class EditarEmpresa implements Acao {
 		
 		request.setAttribute("empresa", empresa);
 		
-		return "foward:formAlteraEmpresa.jsp";
+		return "foward:WEB-INF/view/formAlteraEmpresa.jsp";
 	}
 }

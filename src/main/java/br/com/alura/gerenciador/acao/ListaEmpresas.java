@@ -19,6 +19,6 @@ public class ListaEmpresas implements Acao {
 		
 		request.setAttribute("ListaEmpresas", ListaEmpresas);
 		
-		return "foward:listaEmpresas.jsp";
+		return "foward:WEB-INF/view/listaEmpresas.jsp";
 	}
 }

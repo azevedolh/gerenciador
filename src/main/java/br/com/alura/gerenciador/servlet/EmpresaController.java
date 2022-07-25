@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.acao.Acao;
 
@@ -33,7 +32,7 @@ public class EmpresaController extends HttpServlet {
 		String[] acaoAndUrl = link.split(":");
 		
 		if (acaoAndUrl[0].equals("foward")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/view/" + acaoAndUrl[1]);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(acaoAndUrl[1]);
 			dispatcher.forward(request, response);
 		} else {
 			response.sendRedirect(acaoAndUrl[1]);

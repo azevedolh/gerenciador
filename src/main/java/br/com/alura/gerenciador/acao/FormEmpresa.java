@@ -6,6 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 public class FormEmpresa implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) {
-		return "foward:formNovaEmpresa.jsp";
+		return "foward:WEB-INF/view/formNovaEmpresa.jsp";
 	}
 }
